@@ -7,7 +7,7 @@ const Calculator = () => {
     return ( 
         <>
             <Results value={value}/>
-            <Buttons />
+            <Buttons setValue={setValue} value={value}/>
         </>
 
      );

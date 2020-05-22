@@ -2,10 +2,10 @@ import React from 'react';
 import Button from '../Button/Button';
 import './Buttons.css';
 
-const Buttons = () => {
+const Buttons = (props) => {
     return ( 
         <div className="Buttons">
-            <Button />
+            <Button setValue={props.setValue} value={props.value} />
         </div>
      );
 }
