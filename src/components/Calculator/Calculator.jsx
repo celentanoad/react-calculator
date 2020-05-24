@@ -6,11 +6,15 @@ import './Calculator.css';
 
 const Calculator = () => {
     const [value, setValue] = useState(0);
+    const [sign, setSign] = useState('');
     return ( 
         <>
             <Results value={value}/>
-            <Buttons setValue={setValue} value={value}/>
-            <button className="Clear-button">Reset</button>
+            <Buttons setValue={setValue} value={value} setSign={setSign} sign={sign}/>
+            <button 
+                className="Clear-button"
+                onClick={() => setValue(0)} 
+            >Reset</button>
         </>
 
      );
