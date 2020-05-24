@@ -3,6 +3,14 @@ import './Button.css';
 
 const Button = (props) => {
 
+    let firstNum;
+
+    function resetValue(sign) {
+        firstNum = props.value;
+        props.setValue(0);
+        props.setSign(sign)
+    }
+
     function calculate(num1, sign, num2) {
         if (sign === "-") {
             return num1 - num2
@@ -11,62 +19,62 @@ const Button = (props) => {
         } else if (sign === "/") {
             return num1 / num2
         } else {
-            return num1 + num2
+            if (sign) return num1 + num2
         }
     }
 
     return ( 
         <div>
             <button 
-                onClick={() => !props.value ? props.setValue(7) : props.setValue(calculate(props.value, props.sign, 7))} 
+                onClick={() => !props.value ? props.setValue(7) : props.setValue(`${props.value}7`)}
                 className="Button">7
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(8) : props.setValue(calculate(props.value, props.sign, 8))}  
+                onClick={() => !props.value ? props.setValue(8) : props.setValue(`${props.value}8`)}
                 className="Button">8
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(9) : props.setValue(calculate(props.value, props.sign, 9))} 
+                onClick={() => !props.value ? props.setValue(9) : props.setValue(`${props.value}9`)}
                 className="Button">9
             </button>
             <button 
-                onClick={() => !props.sign ? props.setSign('x') : console.log('')} 
+                onClick={() => !props.sign ? resetValue("x") : console.log('')} 
                 className="Button">x
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(4) : props.setValue(calculate(props.value, props.sign, 4))} 
+                onClick={() => !props.value ? props.setValue(4) : props.setValue(`${props.value}4`)}
                 className="Button">4
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(5) : props.setValue(calculate(props.value, props.sign, 5))} 
+                onClick={() => !props.value ? props.setValue(5) : props.setValue(`${props.value}5`)} 
                 className="Button">5
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(6) : props.setValue(calculate(props.value, props.sign, 6))} 
+                onClick={() => !props.value ? props.setValue(6) : props.setValue(`${props.value}6`)}
                 className="Button">6
             </button>
             <button 
-                onClick={() => (props.value) ? props.setSign("-") : console.log('')} 
+                onClick={() => (props.value) ? resetValue("-") : console.log('')} 
                 className="Button">-
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(1) : props.setValue(calculate(props.value, props.sign, 1))} 
+                onClick={() => !props.value ? props.setValue(1) : props.setValue(`${props.value}1`)}
                 className="Button">1
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(2) : props.setValue(calculate(props.value, props.sign, 2))} 
+                onClick={() => !props.value ? props.setValue(2) : props.setValue(`${props.value}2`)}
                 className="Button">2
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(3) : props.setValue(calculate(props.value, props.sign, 3))} 
+                onClick={() => !props.value ? props.setValue(3) : props.setValue(`${props.value}3`)}
                 className="Button">3
             </button>
             <button 
-                onClick={() => (props.value) ? props.setSign("+") : console.log('')}
+                onClick={() => (props.value) ? resetValue("+") : console.log('')}
                 className="Button">+
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(0) : props.setValue(calculate(props.value, props.sign, 0))} 
+                onClick={() => !props.value ? props.setValue(0) : props.setValue(`${props.value}0`)}
                 className="Button">0
             </button>
             <button 
@@ -74,11 +82,11 @@ const Button = (props) => {
                 className="Button">.
             </button>
             <button 
-                onClick={() => calculate()}
+                onClick={() => (firstNum) ? props.setValue(calculate(firstNum, props.sign, props.value)) : console.log('')} 
                 className="Button">=
             </button>
             <button 
-                onClick={() => (props.value) ? props.setSign("/") : console.log('')}
+                onClick={() => (props.value) ? resetValue("/") : console.log('')}
                 className="Button">/
             </button>
         </div>
