@@ -5,7 +5,7 @@ import './Buttons.css';
 const Buttons = (props) => {
     return ( 
         <div className="Buttons">
-            <Button setValue={props.setValue} value={props.value} sign={props.sign} setSign={props.setSign}/>
+            <Button result={props.result} setResult={props.setResult} setValue1={props.setValue1} setValue2={props.setValue2} value1={props.value1} value2={props.value2} sign={props.sign} setSign={props.setSign}/>
         </div>
      );
 }

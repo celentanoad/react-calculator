@@ -3,90 +3,100 @@ import './Button.css';
 
 const Button = (props) => {
 
-    let firstNum;
+    // function resetValue(sign) {
+    //     props.firstNum = props.value;
+    //     console.log(props.firstNum);
+    //     props.setValue1(0);
+    //     props.setValue2(0);
+    //     props.setSign(sign)
+    // }
 
-    function resetValue(sign) {
-        firstNum = props.value;
-        props.setValue(0);
-        props.setSign(sign)
+    function determineValuePlacement(num) {
+        if (!props.sign) {
+            (!props.value1) ? props.setValue1(num) : props.setValue1(`${props.value1}${num}`);
+            props.setResult(props.value1)
+        } else {
+            (!props.value2) ? props.setValue2(num) : props.setValue2(`${props.value2}${num}`);
+            props.setResult(props.value2);
+        }
     }
 
     function calculate(num1, sign, num2) {
         if (sign === "-") {
-            return num1 - num2
+            return props.setResult(props.value1 - props.value2);
         } else if (sign === "x") {
-            return num1 * num2
+            return props.setResult(props.value1 * props.value2);
         } else if (sign === "/") {
-            return num1 / num2
+            return props.setResult(props.value1 / props.value2);
         } else {
-            if (sign) return num1 + num2
+            if (sign) return props.setResult(props.value1 + props.value2);
         }
     }
 
     return ( 
         <div>
             <button 
-                onClick={() => !props.value ? props.setValue(7) : props.setValue(`${props.value}7`)}
+                onClick={() => determineValuePlacement(7)}
                 className="Button">7
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(8) : props.setValue(`${props.value}8`)}
+                onClick={() => determineValuePlacement(8)}
                 className="Button">8
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(9) : props.setValue(`${props.value}9`)}
+                onClick={() => determineValuePlacement(9)}
                 className="Button">9
             </button>
             <button 
-                onClick={() => !props.sign ? resetValue("x") : console.log('')} 
+                onClick={() => !props.sign ? props.setSign("x") : console.log('err')} 
                 className="Button">x
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(4) : props.setValue(`${props.value}4`)}
+                onClick={() => determineValuePlacement(4)}
                 className="Button">4
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(5) : props.setValue(`${props.value}5`)} 
+                onClick={() => determineValuePlacement(5)} 
                 className="Button">5
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(6) : props.setValue(`${props.value}6`)}
+                onClick={() => determineValuePlacement(6)}
                 className="Button">6
             </button>
             <button 
-                onClick={() => (props.value) ? resetValue("-") : console.log('')} 
+                onClick={() => (props.value1) ? props.setSign("-") : console.log('err')} 
                 className="Button">-
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(1) : props.setValue(`${props.value}1`)}
+                onClick={() => determineValuePlacement(1)}
                 className="Button">1
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(2) : props.setValue(`${props.value}2`)}
+                onClick={() => determineValuePlacement(2)}
                 className="Button">2
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(3) : props.setValue(`${props.value}3`)}
+                onClick={() => determineValuePlacement(3)}
                 className="Button">3
             </button>
             <button 
-                onClick={() => (props.value) ? resetValue("+") : console.log('')}
+                onClick={() => (props.value1) ? props.setSign("+") : console.log('err')}
                 className="Button">+
             </button>
             <button 
-                onClick={() => !props.value ? props.setValue(0) : props.setValue(`${props.value}0`)}
+                onClick={() => determineValuePlacement(0)}
                 className="Button">0
             </button>
             <button 
-                onClick={() => props.setValue(0)} 
+                onClick={() => determineValuePlacement('.')} 
                 className="Button">.
             </button>
             <button 
-                onClick={() => (firstNum) ? props.setValue(calculate(firstNum, props.sign, props.value)) : console.log('')} 
+                onClick={() => calculate(props.value1, props.sign, props.value2)} 
                 className="Button">=
             </button>
             <button 
-                onClick={() => (props.value) ? resetValue("/") : console.log('')}
+                onClick={() => (props.value1) ? props.setSign("/") : console.log('err')}
                 className="Button">/
             </button>
         </div>
