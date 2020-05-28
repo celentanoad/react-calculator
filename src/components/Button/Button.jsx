@@ -3,33 +3,35 @@ import './Button.css';
 
 const Button = (props) => {
 
-    // function resetValue(sign) {
-    //     props.firstNum = props.value;
-    //     console.log(props.firstNum);
-    //     props.setValue1(0);
-    //     props.setValue2(0);
-    //     props.setSign(sign)
-    // }
-
     function determineValuePlacement(num) {
         if (!props.sign) {
-            (!props.value1) ? props.setValue1(num) : props.setValue1(`${props.value1}${num}`);
-            props.setResult(props.value1)
+            if (!props.value1) {
+                props.setValue1(num);
+                props.setResult(num);
+            } else {
+                props.setValue1(`${props.value1}${num}`)
+                props.setResult(`${props.value1}${num}`);
+            }
         } else {
-            (!props.value2) ? props.setValue2(num) : props.setValue2(`${props.value2}${num}`);
-            props.setResult(props.value2);
+            if (!props.value2) {
+                props.setValue2(num);
+                props.setResult(num);
+            } else {
+                props.setValue2(`${props.value2}${num}`)
+                props.setResult(`${props.value2}${num}`);
+            }
         }
     }
 
-    function calculate(num1, sign, num2) {
+    function calculate(sign) {
         if (sign === "-") {
-            return props.setResult(props.value1 - props.value2);
+            return props.setResult(parseInt(props.value1) - parseInt(props.value2));
         } else if (sign === "x") {
             return props.setResult(props.value1 * props.value2);
         } else if (sign === "/") {
             return props.setResult(props.value1 / props.value2);
         } else {
-            if (sign) return props.setResult(props.value1 + props.value2);
+            if (sign) return props.setResult(parseInt(props.value1) + parseInt(props.value2));
         }
     }
 
@@ -92,7 +94,7 @@ const Button = (props) => {
                 className="Button">.
             </button>
             <button 
-                onClick={() => calculate(props.value1, props.sign, props.value2)} 
+                onClick={() => calculate(props.sign)} 
                 className="Button">=
             </button>
             <button 
