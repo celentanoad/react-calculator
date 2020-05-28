@@ -7,4 +7,6 @@
     font-size: 40px;
     border-radius: 50%;
     outline: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
 }

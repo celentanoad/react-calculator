@@ -1,9 +1,11 @@
 import React from 'react';
-
+import './Results.css'
 
 const Results = (props) => {
     return ( 
-        <p>Results: {props.result}</p>
+        <div className="Results">
+            {props.result}
+        </div>
      );
 }
  

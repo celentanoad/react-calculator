@@ -24,7 +24,7 @@ const Calculator = (props) => {
             <button 
                 className="Clear-button"
                 onClick={() => reset()}
-            >Reset</button>
+            >RESET</button>
         </>
 
      );

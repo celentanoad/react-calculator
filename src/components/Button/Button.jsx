@@ -32,15 +32,24 @@ const Button = (props) => {
 
     function calculate(sign) {
         playOn();
+        if (!sign) return;
+        let num;
         if (sign === "-") {
-            return props.setResult(parseInt(props.value1) - parseInt(props.value2));
+            num = parseInt(props.value1) - parseInt(props.value2);
+            props.setResult(num);
         } else if (sign === "x") {
-            return props.setResult(props.value1 * props.value2);
+            num = props.value1 * props.value2;
+            props.setResult(num);
         } else if (sign === "/") {
-            return props.setResult(props.value1 / props.value2);
+            num = props.value1 / props.value2;
+            props.setResult(num);
         } else {
-            if (sign) return props.setResult(parseInt(props.value1) + parseInt(props.value2));
+            num = parseInt(props.value1) + parseInt(props.value2);
+            props.setResult(num);
         }
+        props.setValue1(num);
+        props.setValue2(0);
+        props.setSign(0);
     }
 
     return ( 

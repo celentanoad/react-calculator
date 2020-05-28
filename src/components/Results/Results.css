@@ -1,0 +1,8 @@
+.Results {
+    width: 240px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 38px;
+    background-color: lightgray;
+    height: 40px;
+    text-align: right;
+}
