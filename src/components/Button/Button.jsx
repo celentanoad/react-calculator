@@ -1,9 +1,16 @@
 import React from 'react';
 import './Button.css';
+import useSound from 'use-sound';
+import click from '../sounds/click.wav'
+import result from '../sounds/result.wav'
 
 const Button = (props) => {
 
+    const [play] = useSound(click);
+    const [playOn] = useSound(result);
+    
     function determineValuePlacement(num) {
+        play();
         if (!props.sign) {
             if (!props.value1) {
                 props.setValue1(num);
@@ -24,6 +31,7 @@ const Button = (props) => {
     }
 
     function calculate(sign) {
+        playOn();
         if (sign === "-") {
             return props.setResult(parseInt(props.value1) - parseInt(props.value2));
         } else if (sign === "x") {
